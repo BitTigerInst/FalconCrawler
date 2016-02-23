@@ -5,6 +5,9 @@ var database = require('./config/database');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var crawler = require("simplecrawler");
+var cheerio = require("cheerio");
+
 
 mongoose.connect(database.remoteUrl, function (err) {
     if (err) {
@@ -21,7 +24,9 @@ app.use(express.static(__dirname + '/public'));
 // log every request to the console
 app.use(morgan('dev'));
 // pull information from html in POST
-app.use(bodyParser.urlencoded({'extended': 'true'}));
+app.use(bodyParser.urlencoded({
+    'extended': 'true'
+}));
 app.use(bodyParser.json());
 
 // ----- define model
@@ -45,24 +50,22 @@ app.get('/api/todos', function (req, res) {
     });
 });
 
-// create Todo and send back all todos after creation
-app.post('/api/todos', function (req, res) {
-    // create a Todo, information comes from AJAX request from Angular
-    Todo.create({
-        text: req.body.text,
-        done: false
-    }, function (err, todo) {
-        if (err) {
-            res.send(err);
-        }
-        // get and return all the todos after you create another
-        Todo.find(function (err, todos) {
-            if (err) {
-                res.send(err);
-            }
-            res.json(todos);
+// Crawel the zhihu.com
+app.post('/api/crawl', function (req, res) {
+
+    var keywords = req.body.text;
+    var crawlUrl = "https://www.zhihu.com/search?type=question&q=" + keywords;
+    console.log("***** Crawling... " + crawlUrl);
+
+    crawler.crawl(crawlUrl)
+        .on("fetchcomplete", function (queueItem, responseBuffer, response) {
+            console.log("***** Completed fetching resource:", queueItem.url);
+            console.log("***** Just received %s (%d bytes)", queueItem.url, responseBuffer.length);
+            console.log("***** It was a resource of type %s", response.headers['content-type']);
+
+            // Do something with the data in responseBuffer
+            console.log(responseBuffer.toString());
         });
-    });
 
 });
 

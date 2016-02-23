@@ -10,6 +10,7 @@
     "morgan"          : "~1.1.1",
     "body-parser"     : "~1.4.3",
     "method-override" : "~2.1.1",
-    "simplecrawler"   : "~0.6.2"
+    "simplecrawler"   : "~0.6.2",
+    "cheerio"         : "~0.20.0"
   }
 }
