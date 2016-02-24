@@ -5,8 +5,9 @@ var database = require('./config/database');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var crawler = require("simplecrawler");
+var Crawler = require("simplecrawler");
 var cheerio = require("cheerio");
+var https = require('https');
 
 
 mongoose.connect(database.remoteUrl, function (err) {
@@ -50,23 +51,49 @@ app.get('/api/todos', function (req, res) {
     });
 });
 
-// Crawel the zhihu.com
+// Crawel the zhihu.com 
 app.post('/api/crawl', function (req, res) {
 
     var keywords = req.body.text;
-    var crawlUrl = "https://www.zhihu.com/search?type=question&q=" + keywords;
+    var crawlUrl = "http://www.zhihu.com/search?type=question&q=" + keywords;
     console.log("***** Crawling... " + crawlUrl);
 
-    crawler.crawl(crawlUrl)
+    Crawler.crawl(crawlUrl)
         .on("fetchcomplete", function (queueItem, responseBuffer, response) {
             console.log("***** Completed fetching resource:", queueItem.url);
             console.log("***** Just received %s (%d bytes)", queueItem.url, responseBuffer.length);
             console.log("***** It was a resource of type %s", response.headers['content-type']);
 
             // Do something with the data in responseBuffer
-            console.log(responseBuffer.toString());
+            var html = responseBuffer.toString();
+            var $ = cheerio.load(html);
+            // parsing the html
         });
+});
 
+
+// Crawel the zhihu.com by getting http response
+app.post('/api/crawl1', function (req, res) {
+
+    var keywords = req.body.text;
+    var options = {
+        host: 'www.zhihu.com',
+        port: 443,
+        path: "/search?type=question&q=" + keywords,
+        method: 'GET'
+    };
+
+    var req = https.request(options, function (res) {
+        console.log(res.statusCode);
+        res.on('data', function (d) {
+            process.stdout.write(d);
+        });
+    });
+    req.end();
+
+    req.on('error', function (e) {
+        console.error(e);
+    });
 });
 
 // delete a todo
