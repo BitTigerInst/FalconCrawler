@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-var mongoose = require('mongoose');
-var database = require('./config/database');
+//var mongoose = require('mongoose');
+//var database = require('./config/database');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -9,16 +9,14 @@ var Crawler = require("simplecrawler");
 var cheerio = require("cheerio");
 var https = require('https');
 
-
-mongoose.connect(database.remoteUrl, function (err) {
-    if (err) {
-        console.log('Failed to connect to the database.');
-        console.log(err);
-    } else {
-        console.log('Connected to the database.');
-    }
-});
-
+//mongoose.connect(database.remoteUrl, function (err) {
+//    if (err) {
+//        console.log('Failed to connect to the database.');
+//        console.log(err);
+//    } else {
+//        console.log('Connected to the database.');
+//    }
+//});
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
@@ -30,28 +28,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// ----- define model
-var Todo = mongoose.model('Todo', {
-    text: String
-});
+//// ----- define model
+//var Todo = mongoose.model('Todo', {
+//    text: String
+//});
 
 // ----- define routes
 
-// get all todos
-app.get('/api/todos', function (req, res) {
-    // use mongoose to get all todos in the database
-    Todo.find(function (err, todos) {
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            console.log(err);
-            res.send(err);
-        }
-        console.log(todos);
-        res.json(todos); // return all todos in JSON format
-    });
-});
-
-// Crawel the zhihu.com 
+// Crawel the zhihu.com by using simpleCrawler
 app.post('/api/crawl', function (req, res) {
 
     var keywords = req.body.text;
@@ -84,32 +68,26 @@ app.post('/api/crawl1', function (req, res) {
     };
 
     var req = https.request(options, function (res) {
+        
+        var resultBuffer;
+        var html;
+        var $;
+        
         console.log(res.statusCode);
         res.on('data', function (d) {
             process.stdout.write(d);
+            resultBuffer = resultBuffer + d;
+        });
+        
+        res.on('end', function() {
+            html = responseBuffer.toString();
+            $ = cheerio.load(html);
         });
     });
     req.end();
 
     req.on('error', function (e) {
         console.error(e);
-    });
-});
-
-// delete a todo
-app.delete('/api/todos/:todo_id', function (req, res) {
-    Todo.remove({
-        _id: req.params.todo_id
-    }, function (err, todo) {
-        if (err)
-            res.send(err);
-        // get and return all the todos after you create another
-        Todo.find(function (err, todos) {
-            if (err) {
-                res.send(err);
-            }
-            res.json(todos);
-        });
     });
 });
 
