@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // Crawel the zhihu.com by getting http response
 app.post('/api/crawl', function (req, res) {
 
-    var crawlerModule = new crawlers.Zhihu();
+    var crawlerModule = new crawlers.StackOverflow();
     var keywords = encodeURIComponent(req.body.text.trim());
     var options = {
         host: crawlerModule.host,
