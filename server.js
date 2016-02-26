@@ -1,22 +1,11 @@
 var express = require('express');
 var app = express();
-//var mongoose = require('mongoose');
-//var database = require('./config/database');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var Crawler = require("simplecrawler");
-var cheerio = require("cheerio");
+var Crawler = require('simplecrawler');
+var cheerio = require('cheerio');
 var https = require('https');
-
-//mongoose.connect(database.remoteUrl, function (err) {
-//    if (err) {
-//        console.log('Failed to connect to the database.');
-//        console.log(err);
-//    } else {
-//        console.log('Connected to the database.');
-//    }
-//});
+var fs = require('fs');
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
@@ -28,60 +17,30 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-//// ----- define model
-//var Todo = mongoose.model('Todo', {
-//    text: String
-//});
-
 // ----- define routes
 
-// Crawel the zhihu.com by using simpleCrawler
+// Crawel the zhihu.com by getting http response
 app.post('/api/crawl', function (req, res) {
 
-    var keywords = req.body.text;
-    var crawlUrl = "http://www.zhihu.com/search?type=question&q=" + keywords;
-    console.log("***** Crawling... " + crawlUrl);
-
-    Crawler.crawl(crawlUrl)
-        .on("fetchcomplete", function (queueItem, responseBuffer, response) {
-            console.log("***** Completed fetching resource:", queueItem.url);
-            console.log("***** Just received %s (%d bytes)", queueItem.url, responseBuffer.length);
-            console.log("***** It was a resource of type %s", response.headers['content-type']);
-
-            // Do something with the data in responseBuffer
-            var html = responseBuffer.toString();
-            var $ = cheerio.load(html);
-            // parsing the html
-        });
-});
-
-
-// Crawel the zhihu.com by getting http response
-app.post('/api/crawl1', function (req, res) {
-
-    var keywords = req.body.text;
+    var keywords = encodeURIComponent(req.body.text.trim());
     var options = {
         host: 'www.zhihu.com',
         port: 443,
-        path: "/search?type=question&q=" + keywords,
+        path: '/search?type=question&q=' + keywords,
         method: 'GET'
     };
 
     var req = https.request(options, function (res) {
-        
+
         var resultBuffer;
-        var html;
-        var $;
-        
-        console.log(res.statusCode);
+
         res.on('data', function (d) {
-            process.stdout.write(d);
             resultBuffer = resultBuffer + d;
         });
-        
-        res.on('end', function() {
-            html = responseBuffer.toString();
-            $ = cheerio.load(html);
+
+        res.on('end', function () {
+            var html = resultBuffer.toString();
+            htmlParse(html);
         });
     });
     req.end();
@@ -93,7 +52,31 @@ app.post('/api/crawl1', function (req, res) {
 
 // get the index.html
 app.get('*', function (req, res) {
-    res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    res.sendfile('./public/index.html');
 });
 
 app.listen(8080);
+
+function htmlParse(html) {
+    var $ = cheerio.load(html);
+    var count = 0;
+    $('li.item.clearfix').each(function (i, element) {
+        var title = $(element).find('div.title').text();
+        var author = $(element).find('a.author').text();
+        var answerLink = $(element).find('div.entry-content.js-collapse-body').attr('data-entry-url');
+        var content = $(element).find('script.content').text();
+
+        if (count < 5 && !isBlank(title) && !isBlank(author) && !isBlank(answerLink)) {
+            console.log('\n' + 'Title: ' + title);
+            console.log('Author: ' + author);
+            console.log('Link: ' + answerLink);
+            console.log('Content: ' + content);
+            count = count + 1;
+        }
+    });
+}
+
+function isBlank(str) {
+
+    return (str == undefined || 　str == null || str.trim() == '');
+}
