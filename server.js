@@ -3,7 +3,7 @@ var app = express();
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var https = require('https');
-var fs = require('fs');
+//var fs = require('fs');
 var crawlers = require('./Helper/crawlers.js');
 
 // set the static files location /public/img will be /img for users
