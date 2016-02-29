@@ -1,10 +1,9 @@
-var express = require('express');
-var app = express();
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var https = require('https');
-//var fs = require('fs');
-var crawlers = require('./Helper/crawlers.js');
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const https = require('https');
+const crawlers = require('./Helper/crawlers.js');
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
@@ -22,6 +21,10 @@ app.use(bodyParser.json());
 app.post('/api/crawl', function (req, res) {
 
     var crawlerModule = new crawlers.StackOverflow();
+    crawlerModule.on('Done', () => {
+        console.log('an event occurred!');
+    });
+
     var keywords = encodeURIComponent(req.body.text.trim());
     var options = {
         host: crawlerModule.host,

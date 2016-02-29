@@ -1,7 +1,12 @@
-var cheerio = require('cheerio');
-var request = require('request');
+const cheerio = require('cheerio');
+const request = require('request');
+const EventEmitter = require('events').EventEmitter;
+const util = require('util');
 
 function Zhihu() {
+
+    // Super constructor
+    EventEmitter.call(this);
 
     this.host = 'www.zhihu.com';
     this.port = 443;
@@ -29,6 +34,10 @@ function Zhihu() {
 
 function StackOverflow() {
 
+    // Super constructor
+    EventEmitter.call(this);
+
+    var stackOverflow = this;
     this.host = 'stackoverflow.com';
     this.port = 443;
     this.path = '/search?q=';
@@ -76,19 +85,21 @@ function StackOverflow() {
                             answerBlock = parseForTopAnswer(body);
                         }
 
-                        this.topAnswer = answerBlock.answer;
-                        this.author = answerBlock.author;
-                        this.authorLink = answerBlock.authorLink;
+                        item.topAnswer = answerBlock.answer;
+                        item.author = answerBlock.author;
+                        item.authorLink = answerBlock.authorLink;
 
-                        console.log('\n*****************************');
-                        console.log('topAnswer:')
-                        console.log(this.topAnswer);
-                        console.log('author: ' + this.author);
-                        console.log('authorLink: ' + this.authorLink);
+                        //                        console.log('\n*****************************');
+                        //                        console.log('topAnswer:')
+                        //                        console.log(item.topAnswer);
+                        //                        console.log('author: ' + item.author);
+                        //                        console.log('authorLink: ' + item.authorLink);
 
                         items.push(item);
                         if (items.length === maxCount) {
                             console.log("Done!");
+                            console.log('Emitting event!!');
+                            stackOverflow.emit('Done');
                         }
                     } else {
                         console.log('Error!! ' + response.statusCode);
@@ -111,7 +122,7 @@ function StackOverflow() {
         var authorBlock = acceptedAnswerBlock.find('div.user-details a');
         var author = authorBlock.text();
         var authorLink = authorBlock.attr('href');
-        
+
         return {
             'answer': topAnswer,
             'author': author,
@@ -144,6 +155,10 @@ function StackOverflow() {
 function isBlank(str) {
     return (str == undefined || str == null || str.trim() == '');
 }
+
+
+util.inherits(Zhihu, EventEmitter);
+util.inherits(StackOverflow, EventEmitter);
 
 exports.Zhihu = Zhihu;
 exports.StackOverflow = StackOverflow;
