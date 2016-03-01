@@ -8,6 +8,7 @@ function Zhihu() {
     // Super constructor
     EventEmitter.call(this);
 
+    var Zhihu = this;
     this.host = 'www.zhihu.com';
     this.port = 443;
     this.path = '/search?type=question&q=';
@@ -28,6 +29,8 @@ function Zhihu() {
                 console.log('Content: ' + content);
                 count = count + 1;
             }
+
+            Zhihu.emit('Done');
         });
     }
 }
@@ -41,11 +44,11 @@ function StackOverflow() {
     this.host = 'stackoverflow.com';
     this.port = 443;
     this.path = '/search?q=';
+    this.items = [];
 
     this.crawl = function (html) {
 
         var $ = cheerio.load(html);
-        var items = [];
         var total = $('div.question-summary.search-result').length;
         var maxCount = total < 5 ? total : 5;
         var count = 0;
@@ -85,18 +88,15 @@ function StackOverflow() {
                             answerBlock = parseForTopAnswer(body);
                         }
 
-                        item.topAnswer = answerBlock.answer;
-                        item.author = answerBlock.author;
-                        item.authorLink = answerBlock.authorLink;
+                        if (answerBlock) {
+                            item.topAnswer = answerBlock.answer;
+                            item.author = answerBlock.author;
+                            item.authorLink = answerBlock.authorLink;
+                        }
 
-                        //                        console.log('\n*****************************');
-                        //                        console.log('topAnswer:')
-                        //                        console.log(item.topAnswer);
-                        //                        console.log('author: ' + item.author);
-                        //                        console.log('authorLink: ' + item.authorLink);
+                        stackOverflow.items.push(item);
 
-                        items.push(item);
-                        if (items.length === maxCount) {
+                        if (stackOverflow.items.length === maxCount) {
                             console.log("Done!");
                             console.log('Emitting event!!');
                             stackOverflow.emit('Done');
@@ -156,11 +156,8 @@ function isBlank(str) {
     return (str == undefined || str == null || str.trim() == '');
 }
 
-
 util.inherits(Zhihu, EventEmitter);
 util.inherits(StackOverflow, EventEmitter);
 
 exports.Zhihu = Zhihu;
 exports.StackOverflow = StackOverflow;
-
-//stackoverflow.com/search?q=[php] node

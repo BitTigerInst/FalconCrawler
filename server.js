@@ -17,21 +17,24 @@ app.use(bodyParser.json());
 
 // ----- define routes
 
-// Crawel the zhihu.com by getting http response
+// Crawl the Zhihu/StackOverflow
 app.post('/api/crawl', function (req, res) {
 
     var crawlerModule = new crawlers.StackOverflow();
     crawlerModule.on('Done', () => {
-        console.log('an event occurred!');
+        res.send(crawlerModule.items);
     });
 
-    var keywords = encodeURIComponent(req.body.text.trim());
+    var keywordsRaw = req.body.text;
+    var keywords = keywordsRaw==undefined? 'ios-deploy' : encodeURIComponent(keywordsRaw.trim());
     var options = {
         host: crawlerModule.host,
         port: crawlerModule.port,
         path: crawlerModule.path + keywords,
         method: 'GET'
     };
+    
+    console.log(crawlerModule.host + crawlerModule.path + keywords);
 
     var req = https.request(options, function (res) {
 
