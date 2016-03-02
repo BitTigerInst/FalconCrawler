@@ -20,8 +20,9 @@ app.use(bodyParser.json());
 // Crawl the Zhihu/StackOverflow
 app.post('/api/crawl', function (req, res) {
 
-    var crawlerModule = new crawlers.StackOverflow();
+    var crawlerModule = new crawlers.Zhihu();
     crawlerModule.on('Done', () => {
+        console.log('Getting event!!');
         res.send(crawlerModule.items);
     });
 

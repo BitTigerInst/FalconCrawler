@@ -53,14 +53,13 @@
             </div>
         </div>
         <br>
+        <br>
         <!-- ANSWER LIST -->
-        <div class="list-group">
-            <!-- Links to detail level -->
-            <a ng-repeat="content in todos" class="list-group-item">
-                <strong>Q: </strong> {{ content.title }} <br>
-                <strong>A: </strong> {{ content.topAnswer }} <br>
-            </a>
-            <br>
+        <div ng-repeat="item in contents">
+            <strong>Q: {{ item.title }} </strong>
+            <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed"><font size="2"><i><u>more</u></i></font></a>
+            <div ng-show="collapsed" ng-bind-html="item.topAnswer"></div>
+            <hr>
         </div>
     </div>
 </body>

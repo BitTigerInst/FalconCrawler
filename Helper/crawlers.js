@@ -12,6 +12,7 @@ function Zhihu() {
     this.host = 'www.zhihu.com';
     this.port = 443;
     this.path = '/search?type=question&q=';
+    this.items = [];
 
     this.crawl = function (html) {
         var $ = cheerio.load(html);
@@ -28,10 +29,23 @@ function Zhihu() {
                 console.log('Link: ' + answerLink);
                 console.log('Content: ' + content);
                 count = count + 1;
-            }
 
-            Zhihu.emit('Done');
+                var item = new ZhihuItem(count, title, answerLink, content, author, '');
+                Zhihu.items.push(item);
+            }
         });
+
+        Zhihu.emit('Done');
+    }
+
+    function ZhihuItem(index, title, link, topAnswer, author, authorLink) {
+
+        this.index = index;
+        this.title = title;
+        this.link = link;
+        this.topAnswer = topAnswer;
+        this.author = author;
+        this.authorLink = authorLink;
     }
 }
 
@@ -97,8 +111,6 @@ function StackOverflow() {
                         stackOverflow.items.push(item);
 
                         if (stackOverflow.items.length === maxCount) {
-                            console.log("Done!");
-                            console.log('Emitting event!!');
                             stackOverflow.emit('Done');
                         }
                     } else {
@@ -124,9 +136,9 @@ function StackOverflow() {
         var authorLink = authorBlock.attr('href');
 
         return {
-            'answer': topAnswer,
-            'author': author,
-            'authorLink': authorLink
+            'answer': topAnswer
+            , 'author': author
+            , 'authorLink': authorLink
         }
     }
 
@@ -145,9 +157,9 @@ function StackOverflow() {
         var authorLink = authorBlock.attr('href');
 
         return {
-            'answer': topAnswer,
-            'author': author,
-            'authorLink': authorLink
+            'answer': topAnswer
+            , 'author': author
+            , 'authorLink': authorLink
         }
     }
 }
