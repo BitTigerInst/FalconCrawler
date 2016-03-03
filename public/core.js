@@ -18,6 +18,7 @@ function mainController($scope, $http) {
             .success(function (data) {
                 $scope.formData = {};
                 $scope.todos = data;
+                $scope.answer = data;
                 console.log(data);
             })
             .error(function (data) {
