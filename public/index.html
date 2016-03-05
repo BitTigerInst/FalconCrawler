@@ -1,4 +1,3 @@
-
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -7,341 +6,414 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <html ng-app="zhihuAnswer">
-<head>
-<title>Falcon Zhihu & StackOverflow Search | Home :: w3layouts</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Falcon search" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="all" />
-<link href="css/ihover.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/button.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- js -->
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-<script src="//lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
-<script src="core.js"></script>
-<script src="//cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<!-- load angular -->
-<!-- //js -->
-<!-- fonts -->
-<link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Salsa' rel='stylesheet' type='text/css'>
 
-<!-- //fonts -->
-	<!-- start-smoth-scrolling -->
-		<script type="text/javascript" src="js/move-top.js"></script>
-		<script type="text/javascript" src="js/easing.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-		</script>
-	<!-- start-smoth-scrolling -->
+<head>
+    <title>Falcon Zhihu & StackOverflow Search | Home :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Falcon search" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //for-mobile-apps -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/lightbox.css" type="text/css" media="all" />
+    <link href="css/ihover.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/button.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script src="//lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+    <script src="core.js"></script>
+    <script src="//cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- load angular -->
+    <!-- //js -->
+    <!-- fonts -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Salsa' rel='stylesheet' type='text/css'>
+
+    <!-- //fonts -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
+
 <body ng-controller="mainController">
 
-<!-- banner -->
-<div id="home" class="banner">
-	<div class="container">
-		<div class="top-nav">
-						<div class="nav-icon">
-							<a href="#" class="right_bt" id="activator"><span> </span> </a>
-						</div>
-						<div class="box" id="box">
-							 <div class="box_content">        					                         
-								<div class="box_content_center">
-								 	<div class="form_content">
-										<div class="menu_box_list">
-											<ul>
-												<li><a class="scroll" href="#home">HOME</a></li>
-												<li><a class="scroll" href="#team">TEAM</a></li>
-												<li><a class="scroll" href="#contact">CONTACT</a></li>
-												<div class="clearfix"> </div>
-											</ul>
-										</div>
-										<a class="boxclose" id="boxclose"> <span> </span></a>
-									</div>                                  
-								</div> 	
-							</div>  	  
-						</div>
-					<!---start-click-drop-down-menu----->
-			        <!----start-dropdown--->
-			         <script type="text/javascript">
-						var $ = jQuery.noConflict();
-							$(function() {
-								$('#activator').click(function(){
-									$('#box').animate({'top':'0px'},900);
-								});
-								$('#boxclose').click(function(){
-								$('#box').animate({'top':'-1000px'},900);
-								});
-							});
-							$(document).ready(function(){
-							//Hide (Collapse) the toggle containers on load
-							$(".toggle_container").hide(); 
-							//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
-							$(".trigger").click(function(){
-								$(this).toggleClass("active").next().slideToggle("500");
-									return false; //Prevent the browser jump to the link anchor
-							});
-												
-						});
-					</script>
-					<!---//End-click-drop-down-menu----->
-					<!--top-nav---->
-		</div>
-		<div class="logo">
-			<h1><a href="#"><i></i>Falcon<span>Start of hope</span></a></h1>
-		</div>
-		<div class="soc-ico">
-			<ul>
-				<li><a class="icon1" href="#"></a></li>
-				<li><a class="icon2" href="#"></a></li>
-				<li><a class="icon3" href="#"></a></li>
-				<li><a class="icon4" href="#"></a></li>
-			</ul>
-		</div>
-		<div class="banner-info text-center">
-			<!-- responsiveslides -->
-			<script src="js/responsiveslides.min.js"></script>
-				<script>
-									// You can also use "$(window).load(function() {"
-									$(function () {
-									 // Slideshow 4
-									$("#slider3").responsiveSlides({
-										auto: true,
-										pager: false,
-										nav: false,
-										speed: 500,
-										namespace: "callbacks",
-										before: function () {
-									$('.events').append("<li>before event fired.</li>");
-									},
-									after: function () {
-										$('.events').append("<li>after event fired.</li>");
-										}
-										});
-										});
-				</script>
-			<!-- responsiveslides -->
-			<div  id="top" class="callbacks_container">
-				<ul class="rslides" id="slider3">
-					<li>
-						<div class="banner-text">
-							<h3>Falcon search</h3>
-							<p> Let's rock Zhihu.</p>
-						</div>
-					</li>
-					<li>
-						<div class="banner-text">
-							<h3>Falcon search</h3>
-							<p> StackOverflow is also a ez cake.</p>
-							
-						</div>
-					</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-            <!-- Zhihu Search -->
-
-            <div id="todo-form" class="row">
-                <div class="col-sm-8 col-sm-offset-2 text-center">
-                    <form>
-                        <div class="form-group">
-                            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                            <input type="text" class="form-control input-lg text-center" placeholder="黑泽明" ng-model="formData.text">
+    <!-- banner -->
+    <div id="home" class="banner">
+        <div class="container">
+            <div class="top-nav">
+                <div class="nav-icon">
+                    <a href="#" class="right_bt" id="activator"><span> </span> </a>
+                </div>
+                <div class="box" id="box">
+                    <div class="box_content">
+                        <div class="box_content_center">
+                            <div class="form_content">
+                                <div class="menu_box_list">
+                                    <ul>
+                                        <li><a class="scroll" href="#home">HOME</a></li>
+                                        <li><a class="scroll" href="#team">TEAM</a></li>
+                                        <li><a class="scroll" href="#contact">CONTACT</a></li>
+                                        <div class="clearfix"> </div>
+                                    </ul>
+                                </div>
+                                <a class="boxclose" id="boxclose"> <span> </span></a>
+                            </div>
                         </div>
-                        <div class="border"><button type="submit" ng-click="submitKeywords()" style="color: white; background-color:rgb(179,101,197); font-size:20px">SUBMIT</button></div>
+                    </div>
+                </div>
+                <!---start-click-drop-down-menu----->
+                <!----start-dropdown--->
+                <script type="text/javascript">
+                    var $ = jQuery.noConflict();
+                    $(function () {
+                        $('#activator').click(function () {
+                            $('#box').animate({
+                                'top': '0px'
+                            }, 900);
+                        });
+                        $('#boxclose').click(function () {
+                            $('#box').animate({
+                                'top': '-1000px'
+                            }, 900);
+                        });
+                    });
+                    $(document).ready(function () {
+                        //Hide (Collapse) the toggle containers on load
+                        $(".toggle_container").hide();
+                        //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+                        $(".trigger").click(function () {
+                            $(this).toggleClass("active").next().slideToggle("500");
+                            return false; //Prevent the browser jump to the link anchor
+                        });
+
+                    });
+                </script>
+                <!---//End-click-drop-down-menu----->
+                <!--top-nav---->
+            </div>
+            <div class="logo">
+                <h1><a href="#"><i></i>Falcon<span>Start of hope</span></a></h1>
+            </div>
+            <div class="soc-ico">
+                <ul>
+                    <li>
+                        <a class="icon1" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="icon2" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="icon3" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="icon4" href="#"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="banner-info text-center">
+                <!-- responsiveslides -->
+                <script src="js/responsiveslides.min.js"></script>
+                <script>
+                    // You can also use "$(window).load(function() {"
+                    $(function () {
+                        // Slideshow 4
+                        $("#slider3").responsiveSlides({
+                            auto: true
+                            , pager: false
+                            , nav: false
+                            , speed: 500
+                            , namespace: "callbacks"
+                            , before: function () {
+                                $('.events').append("<li>before event fired.</li>");
+                            }
+                            , after: function () {
+                                $('.events').append("<li>after event fired.</li>");
+                            }
+                        });
+                    });
+                </script>
+                <!-- responsiveslides -->
+                <div id="top" class="callbacks_container">
+                    <ul class="rslides" id="slider3">
+                        <li>
+                            <div class="banner-text">
+                                <h3>Falcon search</h3>
+                                <p> Let's rock Zhihu.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="banner-text">
+                                <h3>Falcon search</h3>
+                                <p> StackOverflow is also a ez cake.</p>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- Zhihu Search -->
+
+                <div id="todo-form" class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text-center">
+                        <form>
+                            <div class="form-group">
+                                <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                                <input type="text" class="form-control input-lg text-center" placeholder="黑泽明" ng-model="formData.text">
+                            </div>
+                            <div class="border">
+                                <button class="hvr-outline-out button2 scroll" type="submit" ng-click="submitKeywords()" style="color: white; background-color:rgb(179,101,197); font-size:20px">SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- ANSWER LIST -->
+                <div ng-repeat="item in contents">
+                    <strong ng-style="getBackgroundColor(item.index)">Q: {{ item.title }}    </strong>
+                    <button id="collapseButton{{ item.index }}" type="button" class="btn btn-info " data-toggle="collapse" data-target="#demo{{ item.index }}" style="height:18px;width:18px"></button>
+                    <div id="demo{{ item.index }}" class="collapse" ng-bind-html="item.topAnswer" ng-style="getBackgroundColorForMore(item.index)"></div>
+                    <hr width="30%" />
+                </div>
+                <hr>
+                <div>
+                    <a class="scroll" href="#banner-bottom"><img src="images/arrow.png" alt="#"></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    <!-- banner-bottom -->
+    <div id="banner-bottom" class="banner-bottom">
+
+        <body ng-controller="mainController">
+            <div class="container">
+                <!-- HEADER AND TODO COUNT -->
+
+                <div class="clearfix"></div>
+            </div>
+            <!-- team -->
+            <div id="team" class="team">
+                <div class="container">
+                    <h3 class="tittle need_col">Our team</h3>
+                    <div class="team-grids">
+                        <div class="col-md-3 team-gd text-center">
+                            <div class="ih-item circle effect13 from_left_and_right">
+                                <a href="#">
+                                    <div class="img"><img src="images/team1.jpg" alt="img"></div>
+                                    <div class="info">
+                                        <div class="info-back">
+                                            <h3>Victoria</h3>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a class="icon1" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon2" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon3" href="#"></a>
+                                </li>
+                            </ul>
+                            <p>Aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit.</p>
+                        </div>
+                        <div class="col-md-3 team-gd text-center">
+                            <div class="ih-item circle effect13 from_left_and_right">
+                                <a href="#">
+                                    <div class="img"><img src="images/team2.jpg" alt="img"></div>
+                                    <div class="info">
+                                        <div class="info-back">
+                                            <h3>William</h3>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a class="icon4" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon5" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon6" href="#"></a>
+                                </li>
+                            </ul>
+                            <p>Aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit.</p>
+                        </div>
+                        <div class="col-md-3 team-gd text-center">
+                            <div class="ih-item circle effect13 from_left_and_right">
+                                <a href="#">
+                                    <div class="img"><img src="images/team3.jpg" alt="img"></div>
+                                    <div class="info">
+                                        <div class="info-back">
+                                            <h3>Patrick</h3>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a class="icon1" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon4" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon3" href="#"></a>
+                                </li>
+                            </ul>
+                            <p>Aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit.</p>
+                        </div>
+                        <div class="col-md-3 team-gd text-center">
+                            <div class="ih-item circle effect13 from_left_and_right">
+                                <a href="#">
+                                    <div class="img"><img src="images/team4.jpg" alt="img"></div>
+                                    <div class="info">
+                                        <div class="info-back">
+                                            <h3>Thompson</h3>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a class="icon2" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon5" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="icon6" href="#"></a>
+                                </li>
+                            </ul>
+                            <p>Aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit.</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- map -->
+            <div id="contact" class="map">
+                <iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ1YMtb8cU6YARSHa612Q60cg&key=AIzaSyBzpg6FFI79dvJbM6DZLF4mBJSuiU46CwI"></iframe>
+                <div class="map-right">
+                    <h3 class="tittle">Contact</h3>
+                    <form>
+                        <h5>Your Name:</h5>
+                        <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                        <h5>Your Mail:</h5>
+                        <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                        <h5>Message:</h5>
+                        <textarea onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
+                        <input type="submit" value="Send">
                     </form>
                 </div>
             </div>
-            <br>
-            <br>
-            <!-- ANSWER LIST -->
-            <div ng-repeat="item in contents">
-                <strong ng-style="getBackgroundColor(item.index)">Q: {{ item.title }} </strong>
-                <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed"><font size="2"><i><u>more</u></i></font></a>
-                <div ng-show="collapsed" ng-bind-html="item.topAnswer" ng-style="getBackgroundColorForMore(item.index)"></div>
-                <hr>
-            </div>
-			<a href="#about" class="hvr-outline-out button2 scroll" >SEE MORE ABOUT US</a>
-            <div class="clearfix"></div>
-            <hr>
-			<div ><a class="scroll" href="#banner-bottom"><img src="images/arrow.png" alt="#"></a></div>
-            <div class="clearfix"></div>
-		</div>
-	</div>
-</div>
-<!-- //banner -->
-<!-- banner-bottom -->
-<div id="banner-bottom" class="banner-bottom">
-	<body ng-controller="mainController">
-    <div class="container">
-        <!-- HEADER AND TODO COUNT -->
+            <!-- //map -->
+            <!-- footer -->
+            <div class="footer">
+                <div class="container">
+                    <div class="col-md-4 footer-gd">
+                        <h3>Our Address</h3>
+                        <h2><a href="#">Falcon</a></h2>
+                        <ul>
+                            <li>
+                                <br> 7410 Hollister Ave,
+                                <br> Goleta,
+                                <br> C.A.
+                            </li>
 
-	<div class="clearfix"></div>
-</div>
-<!-- team -->
-<div id="team" class="team">
-	<div class="container">
-		<h3 class="tittle need_col">Our team</h3>
-		<div class="team-grids">
-			<div class="col-md-3 team-gd text-center">
-				<div class="ih-item circle effect13 from_left_and_right"><a href="#">
-					<div class="img"><img src="images/team1.jpg" alt="img"></div>
-					<div class="info">
-					  <div class="info-back">
-						<h3>Victoria</h3>
-						
-					  </div>
-					</div></a>
-				</div>
-				<ul>
-					<li><a class="icon1" href="#"></a></li>
-					<li><a class="icon2" href="#"></a></li>
-					<li><a class="icon3" href="#"></a></li>
-				</ul>
-				<p>Aliquid ex ea commodi consequatur. 
-				Quis autem vel eum iure reprehenderit.</p>
-			</div>
-			<div class="col-md-3 team-gd text-center">
-				<div class="ih-item circle effect13 from_left_and_right"><a href="#">
-					<div class="img"><img src="images/team2.jpg" alt="img"></div>
-					<div class="info">
-					  <div class="info-back">
-						<h3>William</h3>
-						
-					  </div>
-					</div></a>
-				</div>
-				<ul>
-					<li><a class="icon4" href="#"></a></li>
-					<li><a class="icon5" href="#"></a></li>
-					<li><a class="icon6" href="#"></a></li>
-				</ul>
-				<p>Aliquid ex ea commodi consequatur. 
-				Quis autem vel eum iure reprehenderit.</p>
-			</div>
-			<div class="col-md-3 team-gd text-center">
-				<div class="ih-item circle effect13 from_left_and_right"><a href="#">
-					<div class="img"><img src="images/team3.jpg" alt="img"></div>
-					<div class="info">
-					  <div class="info-back">
-						<h3>Patrick</h3>
-						
-					  </div>
-					</div></a>
-				</div>
-				<ul>
-					<li><a class="icon1" href="#"></a></li>
-					<li><a class="icon4" href="#"></a></li>
-					<li><a class="icon3" href="#"></a></li>
-				</ul>
-				<p>Aliquid ex ea commodi consequatur. 
-				Quis autem vel eum iure reprehenderit.</p>
-			</div>
-			<div class="col-md-3 team-gd text-center">
-				<div class="ih-item circle effect13 from_left_and_right"><a href="#">
-					<div class="img"><img src="images/team4.jpg" alt="img"></div>
-					<div class="info">
-					  <div class="info-back">
-						<h3>Thompson</h3>
-						
-					  </div>
-					</div></a>
-				</div>
-				<ul>
-					<li><a class="icon2" href="#"></a></li>
-					<li><a class="icon5" href="#"></a></li>
-					<li><a class="icon6" href="#"></a></li>
-				</ul>
-				<p>Aliquid ex ea commodi consequatur. 
-				Quis autem vel eum iure reprehenderit.</p>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-</div>
-<!-- map -->
-<div id="contact" class="map">
-	<iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ1YMtb8cU6YARSHa612Q60cg&key=AIzaSyBzpg6FFI79dvJbM6DZLF4mBJSuiU46CwI"></iframe>
-	<div class="map-right">
-		<h3 class="tittle">Contact</h3>
-		<form>
-			<h5>Your Name:</h5>
-			<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-			<h5>Your Mail:</h5>
-			<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-			<h5>Message:</h5>
-			<textarea onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
-			<input type="submit" value="Send" >
-		</form>
-	</div>
-</div>
-<!-- //map -->
-<!-- footer -->
-<div class="footer">
-	<div class="container">
-		<div class="col-md-4 footer-gd">
-			<h3>Our Address</h3>
-			<h2><a href="#">Falcon</a></h2>
-			<ul>
-				<li><br>
-				7410 Hollister Ave,<br>
-				Goleta,<br>
-				C.A.</li>
-				
-			</ul>
-		</div>
-		<div class="col-md-4 fb-icons">
-			<h3>Follow Us</h3>
-			<ul>
-				<li><a class="icon1" href="#"></a></li>
-				<li><a class="icon2" href="#"></a></li>
-				<li><a class="icon3" href="#"></a></li>
-			</ul>
-			<ul>
-				<li><a class="icon4" href="#"></a></li>
-				<li><a class="icon5" href="#"></a></li>
-				<li><a class="icon6" href="#"></a></li>
-			</ul>
-		</div>
-		<div class="col-md-4 footer-gd">
-			<h3>Contact Us</h3>
-			<ul>
-                <li>Phone no : + 123 456 789</li>
-				<li>Email : <a href="owlscoffeehouse@gmail.com">wenzhe@email</a></li>
-                <li>Email : <a href="xiaohang.wang.th@gmail.com">xiaohang@email</a></li>
-			</ul>
-		</div>
-		<div class="clearfix"></div>
-		<p class="copy-right">&copy; 2016 Falcon. All Rights Reserved | Design by  <a href="http://w3layouts.com/"> W3layouts</a></p>
-	</div>
-</div>
-<!-- //footer -->
-<!-- smooth scrolling -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-		/*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear' 
-			};
-		*/								
-		$().UItoTop({ easingType: 'easeOutQuart' });
-		});
-	</script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-<!-- //smooth scrolling -->
-</body>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 fb-icons">
+                        <h3>Follow Us</h3>
+                        <ul>
+                            <li>
+                                <a class="icon1" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="icon2" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="icon3" href="#"></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a class="icon4" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="icon5" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="icon6" href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 footer-gd">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li>Phone no : + 123 456 789</li>
+                            <li>Email : <a href="owlscoffeehouse@gmail.com">wenzhe@email</a></li>
+                            <li>Email : <a href="xiaohang.wang.th@gmail.com">xiaohang@email</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p class="copy-right">&copy; 2016 Falcon. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+                </div>
+            </div>
+            <!-- //footer -->
+            <!-- smooth scrolling -->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    /*
+                    	var defaults = {
+                    	containerID: 'toTop', // fading element id
+                    	containerHoverID: 'toTopHover', // fading element hover id
+                    	scrollSpeed: 1200,
+                    	easingType: 'linear' 
+                    	};
+                    */
+                    $().UItoTop({
+                        easingType: 'easeOutQuart'
+                    });
+                });
+            </script>
+            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+            <!-- //smooth scrolling -->
+        </body>
+
 </html>

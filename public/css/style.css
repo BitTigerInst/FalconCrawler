@@ -9,6 +9,13 @@ html, body{
 	background:	#fff;
 	font-family: 'Open Sans', sans-serif;
 }
+
+hr {
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, white, transparent, white), linear-gradient(transparent, rgba(0,0,0,0.55) 150%);    
+}
+
 h4, h5, h6,
 h1, h2, h3 {
 margin: 0;
