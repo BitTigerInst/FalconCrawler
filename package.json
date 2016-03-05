@@ -1,7 +1,7 @@
 {
-  "name"         : "node-todo",
+  "name"         : "falcon-crawler",
   "version"      : "0.0.1",
-  "description"  : "Simple todo application.",
+  "description"  : "Simple crawler application.",
   "main"         : "server.js",
   "author"       : "Scotch",
   "dependencies" : {
@@ -11,6 +11,7 @@
     "body-parser"     : "~1.4.3",
     "method-override" : "~2.1.1",
     "simplecrawler"   : "~0.6.2",
-    "cheerio"         : "~0.20.0"
+    "cheerio"         : "~0.20.0",
+    "request"         : "~2.67.0"
   }
 }
