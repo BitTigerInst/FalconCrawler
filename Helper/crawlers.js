@@ -4,6 +4,8 @@ const EventEmitter = require('events').EventEmitter;
 const util = require('util');
 
 function Zhihu() {
+    
+    console.log('Hello');
 
     // Super constructor
     EventEmitter.call(this);
