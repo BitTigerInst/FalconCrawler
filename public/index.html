@@ -64,59 +64,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- banner -->
     <div id="home" class="banner">
         <div class="container">
-            <div class="top-nav">
-                <div class="nav-icon">
-                    <a href="#" class="right_bt" id="activator"><span> </span> </a>
-                </div>
-                <div class="box" id="box">
-                    <div class="box_content">
-                        <div class="box_content_center">
-                            <div class="form_content">
-                                <div class="menu_box_list">
-                                    <ul>
-                                        <li><a class="scroll" href="#home">HOME</a></li>
-                                        <li><a class="scroll" href="#team">TEAM</a></li>
-                                        <li><a class="scroll" href="#contact">CONTACT</a></li>
-                                        <div class="clearfix"> </div>
-                                    </ul>
-                                </div>
-                                <a class="boxclose" id="boxclose"> <span> </span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!---start-click-drop-down-menu----->
-                <!----start-dropdown--->
-                <script type="text/javascript">
-                    var $ = jQuery.noConflict();
-                    $(function () {
-                        $('#activator').click(function () {
-                            $('#box').animate({
-                                'top': '0px'
-                            }, 900);
-                        });
-                        $('#boxclose').click(function () {
-                            $('#box').animate({
-                                'top': '-1000px'
-                            }, 900);
-                        });
-                    });
-                    $(document).ready(function () {
-                        //Hide (Collapse) the toggle containers on load
-                        $(".toggle_container").hide();
-                        //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
-                        $(".trigger").click(function () {
-                            $(this).toggleClass("active").next().slideToggle("500");
-                            return false; //Prevent the browser jump to the link anchor
-                        });
-
-                    });
-                </script>
-                <!---//End-click-drop-down-menu----->
-                <!--top-nav---->
-            </div>
             <div class="logo">
-                <h1><a href="#"><i></i>Falcon<span>Start of hope</span></a></h1>
+                <h1><a href="#"><i></i>Falcon<span>Go Bigger 高逼格</span></a></h1>
             </div>
             <div class="soc-ico">
                 <ul>
@@ -161,13 +110,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <ul class="rslides" id="slider3">
                         <li>
                             <div class="banner-text">
-                                <h3>Falcon search</h3>
                                 <p> Let's rock Zhihu.</p>
                             </div>
                         </li>
                         <li>
                             <div class="banner-text">
-                                <h3>Falcon search</h3>
                                 <p> StackOverflow is also a ez cake.</p>
 
                             </div>
@@ -185,26 +132,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <input type="text" class="form-control input-lg text-center" placeholder="黑泽明" ng-model="formData.text">
                             </div>
                             <div class="border">
-                                <button class="hvr-outline-out button2 scroll" type="submit" ng-click="submitKeywords()" style="color: white; background-color:rgb(179,101,197); font-size:20px">SUBMIT</button>
+                                <button class="hvr-outline-out button2 scroll" type="submit" ng-click="submitKeywords()" style="margin-top: 10px; color: black; background-color:rgb(255,255,255); font-family: Arial,Helvetica,sans-serif; font-size:18px"> SUBMIT </button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <br>
                 <br>
+                <br>
+                <br>
                 <!-- ANSWER LIST -->
                 <div ng-repeat="item in contents">
                     <strong ng-style="getBackgroundColor(item.index)">Q: {{ item.title }}    </strong>
-                    <button id="collapseButton{{ item.index }}" type="button" class="btn btn-info " data-toggle="collapse" data-target="#demo{{ item.index }}" style="height:18px;width:18px"></button>
+
+                    <a class="button"><img src="images/arrow.png" alt="#" data-toggle="collapse" data-target="#demo{{ item.index }}" height="20" width="20"></a>
+
                     <div id="demo{{ item.index }}" class="collapse" ng-bind-html="item.topAnswer" ng-style="getBackgroundColorForMore(item.index)"></div>
                     <hr width="30%" />
                 </div>
-                <hr>
-                <div>
-                    <a class="scroll" href="#banner-bottom"><img src="images/arrow.png" alt="#"></a>
-                </div>
-                <div class="clearfix"></div>
+                <br>
             </div>
+            <hr width="100%">
         </div>
     </div>
     <!-- //banner -->
@@ -220,7 +168,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!-- team -->
             <div id="team" class="team">
                 <div class="container">
-                    <h3 class="tittle need_col">Our team</h3>
+                    <h3 class="tittle need_col" style="color: black;">Fighting Falcon</h3>
                     <div class="team-grids">
                         <div class="col-md-3 team-gd text-center">
                             <div class="ih-item circle effect13 from_left_and_right">
@@ -326,71 +274,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
             </div>
-            <!-- map -->
-            <div id="contact" class="map">
-                <iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ1YMtb8cU6YARSHa612Q60cg&key=AIzaSyBzpg6FFI79dvJbM6DZLF4mBJSuiU46CwI"></iframe>
-                <div class="map-right">
-                    <h3 class="tittle">Contact</h3>
-                    <form>
-                        <h5>Your Name:</h5>
-                        <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-                        <h5>Your Mail:</h5>
-                        <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-                        <h5>Message:</h5>
-                        <textarea onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
-                        <input type="submit" value="Send">
-                    </form>
-                </div>
-            </div>
-            <!-- //map -->
             <!-- footer -->
             <div class="footer">
                 <div class="container">
-                    <div class="col-md-4 footer-gd">
-                        <h3>Our Address</h3>
-                        <h2><a href="#">Falcon</a></h2>
-                        <ul>
-                            <li>
-                                <br> 7410 Hollister Ave,
-                                <br> Goleta,
-                                <br> C.A.
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-4 fb-icons">
-                        <h3>Follow Us</h3>
-                        <ul>
-                            <li>
-                                <a class="icon1" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="icon2" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="icon3" href="#"></a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a class="icon4" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="icon5" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="icon6" href="#"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 footer-gd">
-                        <h3>Contact Us</h3>
-                        <ul>
-                            <li>Phone no : + 123 456 789</li>
-                            <li>Email : <a href="owlscoffeehouse@gmail.com">wenzhe@email</a></li>
-                            <li>Email : <a href="xiaohang.wang.th@gmail.com">xiaohang@email</a></li>
-                        </ul>
-                    </div>
                     <div class="clearfix"></div>
                     <p class="copy-right">&copy; 2016 Falcon. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
                 </div>
@@ -415,206 +301,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
             <!-- //smooth scrolling -->
         </body>
-
-        <div class="clearfix"></div>
     </div>
-    <!-- team -->
-    <div id="team" class="team">
-        <div class="container">
-            <h3 class="tittle need_col">Our team</h3>
-            <div class="team-grids">
-                <div class="col-md-3 team-gd text-center">
-                    <div class="ih-item circle effect13 from_left_and_right">
-                        <a href="#">
-                            <div class="img"><img src="images/team1.jpg" alt="img"></div>
-                            <div class="info">
-                                <div class="info-back">
-                                    <h3>Wenzhe</h3>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <ul>
-                        <li>
-                            <a class="icon1" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon2" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon3" href="#"></a>
-                        </li>
-                    </ul>
-                    <p>Team leader, server developer.</p>
-                </div>
-                <div class="col-md-3 team-gd text-center">
-                    <div class="ih-item circle effect13 from_left_and_right">
-                        <a href="#">
-                            <div class="img"><img src="images/team2.jpg" alt="img"></div>
-                            <div class="info">
-                                <div class="info-back">
-                                    <h3>Xiaohang</h3>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <ul>
-                        <li>
-                            <a class="icon4" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon5" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon6" href="#"></a>
-                        </li>
-                    </ul>
-                    <p>Team member, frontend developer.</p>
-                </div>
-                <div class="col-md-3 team-gd text-center">
-                    <div class="ih-item circle effect13 from_left_and_right">
-                        <a href="#">
-                            <div class="img"><img src="images/team3.jpg" alt="img"></div>
-                            <div class="info">
-                                <div class="info-back">
-                                    <h3>Patrick</h3>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <ul>
-                        <li>
-                            <a class="icon1" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon4" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon3" href="#"></a>
-                        </li>
-                    </ul>
-                    <p>Aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit.</p>
-                </div>
-                <div class="col-md-3 team-gd text-center">
-                    <div class="ih-item circle effect13 from_left_and_right">
-                        <a href="#">
-                            <div class="img"><img src="images/team4.jpg" alt="img"></div>
-                            <div class="info">
-                                <div class="info-back">
-                                    <h3>Thompson</h3>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <ul>
-                        <li>
-                            <a class="icon2" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon5" href="#"></a>
-                        </li>
-                        <li>
-                            <a class="icon6" href="#"></a>
-                        </li>
-                    </ul>
-                    <p>Aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit.</p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <!-- map -->
-    <div id="contact" class="map">
-        <iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ1YMtb8cU6YARSHa612Q60cg&key=AIzaSyBzpg6FFI79dvJbM6DZLF4mBJSuiU46CwI"></iframe>
-        <div class="map-right">
-            <h3 class="tittle">Contact</h3>
-            <form>
-                <h5>Your Name:</h5>
-                <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-                <h5>Your Mail:</h5>
-                <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-                <h5>Message:</h5>
-                <textarea onfocus="this.value='';" onblur="if (this.value == '') {this.value = '';}"></textarea>
-                <input type="submit" value="Send">
-            </form>
-        </div>
-    </div>
-    <!-- //map -->
-    <!-- footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="col-md-4 footer-gd">
-                <h3>Our Address</h3>
-                <h2><a href="#">Falcon</a></h2>
-                <ul>
-                    <li>
-                        <br> 7410 Hollister Ave,
-                        <br> Goleta,
-                        <br> C.A.
-                    </li>
-
-                </ul>
-            </div>
-            <div class="col-md-4 fb-icons">
-                <h3>Follow Us</h3>
-                <ul>
-                    <li>
-                        <a class="icon1" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="icon2" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="icon3" href="#"></a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a class="icon4" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="icon5" href="#"></a>
-                    </li>
-                    <li>
-                        <a class="icon6" href="#"></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4 footer-gd">
-                <h3>Contact Us</h3>
-                <ul>
-                    <li>Phone no : + 123 456 789</li>
-                    <li>Email : <a href="owlscoffeehouse@gmail.com">wenzhe@email</a></li>
-                    <li>Email : <a href="xiaohang.wang.th@gmail.com">xiaohang@email</a></li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-            <p class="copy-right">&copy; 2016 Falcon. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
-        </div>
-    </div>
-    <!-- //footer -->
-    <!-- smooth scrolling -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            /*
-            	var defaults = {
-            	containerID: 'toTop', // fading element id
-            	containerHoverID: 'toTopHover', // fading element hover id
-            	scrollSpeed: 1200,
-            	easingType: 'linear' 
-            	};
-            */
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-        });
-    </script>
-    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-    <!-- //smooth scrolling -->
 </body>
 
 </html>
