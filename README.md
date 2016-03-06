@@ -5,7 +5,7 @@
 Description
 -----------
 
-**Falcon Crawler** redefines the way people think about knowledge. By crawling popular communities like Zhihu and StackOverflow, it smartly provdies the top 5 most relevant questions you need to know about a topic. No more endless google searching nor tedious wikipedia reading, just GIVE ME THE FIVE!
+**Falcon Crawler** redefines the way people think about knowledge. By crawling popular communities like [Zhihu](http://www.zhihu.com/) and [StackOverflow](http://stackoverflow.com/), it smartly provdies the top 5 most relevant questions you need to know about a topic. No endless googling nor tedious wikipedia reading, just **GIVE ME THE FIVE**!
 
 Plan
 ----
