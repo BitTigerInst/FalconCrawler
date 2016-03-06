@@ -5,7 +5,7 @@
 Description
 -----------
 
-The FalconCrawler aimes to build a generic web crawler, as our first step to twitter-keyword-based stock price prediction system.
+**Falcon Crawler** redefines the way people think about knowledge. By crawling popular communities like Zhihu and StackOverflow, it smartly provdies the top 5 most relevant questions you need to know about a topic. No more endless google searching nor tedious wikipedia reading, just GIVE ME THE FIVE!
 
 Plan
 ----
