@@ -73,7 +73,7 @@ function StackOverflow() {
                 var title = $(element).find('a').attr('title');
                 var questionLink = $(element).find('a').attr('href');
 
-                var questionItem = new StackOverflowItem(i, title, questionLink);
+                var questionItem = new StackOverflowItem(i + 1, title, questionLink);
                 questionItem.queryTopAnswer();
                 count = count + 1;
             }
@@ -111,6 +111,9 @@ function StackOverflow() {
                         stackOverflow.items.push(item);
 
                         if (stackOverflow.items.length === maxCount) {
+                            stackOverflow.items.sort(function (a, b) {
+                                return a.index - b.index
+                            });
                             stackOverflow.emit('Done');
                         }
                     } else {

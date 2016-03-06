@@ -17,10 +17,49 @@ app.use(bodyParser.json());
 
 // ----- define routes
 
-// Crawl the Zhihu/StackOverflow
-app.post('/api/crawl', function (req, res) {
+// Crawl the Zhihu
+app.post('/api/crawlZhihu', function (req, res) {
 
     var crawlerModule = new crawlers.Zhihu();
+    crawlerModule.on('Done', () => {
+        console.log('Getting event!!');
+        res.send(crawlerModule.items);
+    });
+
+    var keywordsRaw = req.body.text;
+    var keywords = keywordsRaw==undefined? 'ios-deploy' : encodeURIComponent(keywordsRaw.trim());
+    var options = {
+        host: crawlerModule.host,
+        port: crawlerModule.port,
+        path: crawlerModule.path + keywords,
+        method: 'GET'
+    };
+    
+    console.log(crawlerModule.host + crawlerModule.path + keywords);
+
+    var req = https.request(options, function (res) {
+
+        var resultBuffer;
+        res.on('data', function (d) {
+            resultBuffer = resultBuffer + d;
+        });
+
+        res.on('end', function () {
+            var html = resultBuffer.toString();
+            crawlerModule.crawl(html);
+        });
+    });
+    req.end();
+
+    req.on('error', function (e) {
+        console.error(e);
+    });
+});
+
+// Crawl the StackOverflow
+app.post('/api/crawlStackOverflow', function (req, res) {
+
+    var crawlerModule = new crawlers.StackOverflow();
     crawlerModule.on('Done', () => {
         console.log('Getting event!!');
         res.send(crawlerModule.items);
