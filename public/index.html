@@ -65,9 +65,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div id="home" class="banner">
         <div class="container">
             <div class="logo">
-                <h1><a href="#"><i></i>Falcon<span>Go Bigger 高逼格</span></a></h1>
+                <h1><a href="#"><i></i>Falcon<span>Go Bigger</span></a></h1>
             </div>
-            <div class="soc-ico">
+            <div class="soc-ico" style="top:90px;">
                 <ul>
                     <li>
                         <a class="icon1" href="#"></a>
@@ -143,11 +143,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <br>
                 <!-- ANSWER LIST -->
                 <div ng-repeat="item in contents">
-                    <strong ng-style="getBackgroundColor(item.index)">Q: {{ item.title }}    </strong>
+                    <strong ng-style="getBackgroundColor(item.index)">#{{ item.index }}  {{ item.title }}    </strong>
 
                     <a class="button"><img src="images/arrow.png" alt="#" data-toggle="collapse" data-target="#demo{{ item.index }}" height="20" width="20"></a>
 
-                    <div id="demo{{ item.index }}" class="collapse" ng-bind-html="item.topAnswer" ng-style="getBackgroundColorForMore(item.index)"></div>
+                    <div id="demo{{ item.index }}" class="collapse" ng-bind-html="item.topAnswer" style="color:#E0F7FA; margin-right : 150px; margin-left : 150px ; text-align : left;"></div>
                     <hr width="30%" />
                 </div>
                 <br>
@@ -276,23 +276,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <!-- footer -->
             <div class="footer">
-                <div class="container">
-                    <div class="clearfix"></div>
-                    <p class="copy-right">&copy; 2016 Falcon. All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
-                </div>
+                <p class="copy-right">&copy; 2016 Fighting Falcon. All Rights Reserved | Design by Fighting Falcon</p>
             </div>
             <!-- //footer -->
             <!-- smooth scrolling -->
             <script type="text/javascript">
                 $(document).ready(function () {
-                    /*
-                    	var defaults = {
-                    	containerID: 'toTop', // fading element id
-                    	containerHoverID: 'toTopHover', // fading element hover id
-                    	scrollSpeed: 1200,
-                    	easingType: 'linear' 
-                    	};
-                    */
                     $().UItoTop({
                         easingType: 'easeOutQuart'
                     });
